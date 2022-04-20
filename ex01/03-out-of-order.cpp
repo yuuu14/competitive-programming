@@ -12,9 +12,22 @@ int main() {
     for (ll i = 0; i < n; i++)
         cin >> stamps[i];
     
-    if (n == 1) cout << "0 0\n";
-    if (n == 2) cout << "0 1\n";
-    int fst = -1, lst = n-1;
+    // copy and sort
+    vector<ll> sorted_stamps(stamps);
+    sort(sorted_stamps.begin(), sorted_stamps.end());
+    // compare diff pos
+    vector<ll> pos(2, -1);
+    for (ll i = 0; i < n; i++) {
+        if (stamps[i] != sorted_stamps[i]) {
+            if (pos[0] == -1) pos[0] = i;
+            else if (pos[1] == -1) pos[1] = i;
+            else { cout << "impossible\n"; return 0; }
+        }
+    }
+    printf("%lld %lld\n", pos[0]+1, pos[1]+1);
+    
+    /*
+    ll fst = -1, lst = n-1;
     for (ll i = 0; i < n-1; i++) {
         if (stamps[i] > stamps[i+1]) {
             if (fst == -1) fst = i;
@@ -26,11 +39,15 @@ int main() {
         }
     }
     // compare [fst] >= [lst-1] and [lst] <= [fst+1]
-    if (stamps[fst] < stamps[lst-1] || stamps[lst] > stamps[fst+1])
+    // 2 5 4 3 4
+    if (fst == -1 ||
+        stamps[fst] < stamps[lst-1] || stamps[lst] > stamps[fst+1] || 
+        fst > 0 && stamps[lst] < stamps[fst-1] || 
+        lst < n-1 && stamps[fst] > stamps[lst+1])
         cout << "impossible\n";
     else
         cout << fst+1 << " " << lst+1 << "\n";
-
+    */
     return 0;
 }
 
