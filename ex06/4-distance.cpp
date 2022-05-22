@@ -2,6 +2,7 @@
 
 using namespace std;
 typedef long long ll;
+typedef long double ld;
 #define debug(x) (cerr << #x << ": " << (x) << endl)
 const auto INF = numeric_limits<ll>::max();
 
@@ -27,7 +28,8 @@ int main() {
         if (c[i][0] - c[i][2] < x_min) g[i].push_back(0);
         if (c[i][0] + c[i][2] > x_max) g[i].push_back(1);
         for (ll j = 2; j < i; j++) 
-            if (pow(c[i][0]-c[j][0], 2)+pow(c[i][1]-c[j][1], 2) < pow(c[i][2]+c[j][2], 2)) {
+            if ((c[i][0]-c[j][0])*(c[i][0]-c[j][0]) + (c[i][1]-c[j][1])*(c[i][1]-c[j][1]) < 
+                (c[i][2]+c[j][2])*(c[i][2]+c[j][2])) {
                 g[i].push_back(j);
                 g[j].push_back(i);
             }
