@@ -17,6 +17,8 @@ int main() {
         name2id[name] = i;
         names.push_back(name);
     }
+    vector<vector<int>> g(n);
+    
     
     // do something
     return 0;
