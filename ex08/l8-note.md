@@ -11,4 +11,11 @@
 - $\mathcal{O}(VE^2)$
 
 
-## Maximum Cardinality Bipartite Matching
+## Maximum Cardinality Matching
+alg
+- start from empty matching
+- `while` exist augmenting paths:
+    - find an augmenting path
+    - augment along the path
+
+**Hopcroft–Karp**
